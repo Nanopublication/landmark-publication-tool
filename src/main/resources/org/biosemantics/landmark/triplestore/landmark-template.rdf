@@ -11,7 +11,7 @@
 
 @prefix np: <http://www.nanopub.org/nschema#> .
 @prefix : <http://localhost:8080/landmark-publication-tool/nanopub/LANDMARKID#> .
-@prefix todo: <http://www.nanopub.org/todo> .
+@prefix lmo: <http://www.nanopub.org/lmo#> .
 @prefix cw: <http://ops.conceptwiki.org/concept/index/> .
 
 @base <http://localhost:8080/landmark-publication-tool/nanopub/LANDMARKID> .
@@ -27,8 +27,8 @@
     :landmark_LANDMARKID a sio:association;
         skos:notation "LANDMARKID"^^xsd:nonNegativeInteger;
         tdwg:publishedIn :publication_LANDMARKID ;
-        todo:subject cw:%s ;                                    # subject
-        todo:object cw:%s .                                     # object
+        lmo:subject cw:%s ;                                    # subject
+        lmo:object cw:%s .                                     # object
 
         cw:%s rdfs:label "%s" .                                 # subject label
         cw:%s rdfs:label "%s" .                                 # object label
@@ -40,11 +40,11 @@
 :provenance {
     :assertion
         pav:authoredBy "%s" ;                                   # article author
-        todo:experimentType "%s" ;                              # experiment type
-        todo:discoveryType "%s" .                               # discovery type
+        lmo:experimentType "%s" ;                              # experiment type
+        lmo:discoveryType "%s" .                               # discovery type
         
     :publication_LANDMARKID
-        pav:published_on "%s"^^xsd:date;                         # article date
+        lmo:publishedOn "%s"^^xsd:date;                         # article date
         pav:authoredBy "%s" .                                   # article author
 }
 
@@ -54,5 +54,5 @@
         dcterms:created "%s"^^xsd:dateTime;                     # date of this claim      
         pav:createdBy "%s" ;                                    # curator
         rdfs:comment "%s" ;                                     # details
-        todo:institution "%s" .                                 # institution
+        lmo:institution "%s" .                                 # institution
 }

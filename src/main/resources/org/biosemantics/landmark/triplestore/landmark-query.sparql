@@ -10,7 +10,7 @@ PREFIX tdwg: <http://rs.tdwg.org/ontology/voc/Common#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
 
 PREFIX np: <http://www.nanopub.org/nschema#> 
-PREFIX todo: <http://www.nanopub.org/todo> 
+PREFIX lmo: <http://www.nanopub.org/lmo#> 
 PREFIX cw: <http://ops.conceptwiki.org/concept/index/> 
 
 SELECT DISTINCT ?id ?publication ?subjectUri ?objectUri ?subjectLabel
@@ -26,8 +26,8 @@ WHERE {
     ?assoc a sio:association;
       skos:notation ?id;
       tdwg:publishedIn ?publication;
-      todo:subject ?subjectUri;
-      todo:object ?objectUri .
+      lmo:subject ?subjectUri;
+      lmo:object ?objectUri .
     
     ?subjectUri rdfs:label ?subjectLabel .
     ?objectUri rdfs:label ?objectLabel .
@@ -38,11 +38,11 @@ WHERE {
   GRAPH ?prov {
     ?assert
       pav:authoredBy ?author;
-      todo:experimentType ?experimentType;
-      todo:discoveryType ?discoveryType .
+      lmo:experimentType ?experimentType;
+      lmo:discoveryType ?discoveryType .
     
     ?publication
-      pav:published_on ?date .
+      lmo:publishedOn ?date .
   } .
   
   GRAPH ?pInfo {
@@ -50,7 +50,7 @@ WHERE {
       dcterms:created ?claimDate;
       pav:createdBy ?curatorId;
       rdfs:comment ?details;
-      todo:institution ?inst .
+      lmo:institution ?inst .
   }
 }
 ORDER BY ASC (?id)
