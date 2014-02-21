@@ -1,0 +1,51 @@
+@prefix this: <http://localhost:8080/landmark-publication-tool/nanopub/6> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdfg: <http://www.w3.org/2004/03/trix/rdfg-1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix pav: <http://swan.mindinformatics.org/ontologies/1.2/pav/> .
+@prefix np: <http://www.nanopub.org/nschema#> .
+
+this: {
+	this: np:hasProvenance <http://localhost:8080/landmark-publication-tool/nanopub/6#provenance> ;
+		np:hasAssertion <http://localhost:8080/landmark-publication-tool/nanopub/6#assertion> ;
+		a np:Nanopublication ;
+		np:hasPublicationInfo <http://localhost:8080/landmark-publication-tool/nanopub/6#publicationInfo> .
+}
+
+<http://localhost:8080/landmark-publication-tool/nanopub/6#assertion> {
+	<http://ops.conceptwiki.org/concept/index/ed77a902-1668-4556-88fc-febdd17400d5> rdfs:label "Cttn protein, rat" .
+	
+	<http://localhost:8080/landmark-publication-tool/nanopub/6#landmark_6> a <http://semanticscience.org/resource/association> .
+	
+	<http://localhost:8080/landmark-publication-tool/nanopub/6#publication_6> <http://purl.org/ontology/bibo/pmid> "01321365" ;
+		a <http://semanticscience.org/resource/article> .
+	
+	<http://localhost:8080/landmark-publication-tool/nanopub/6#landmark_6> <http://rs.tdwg.org/ontology/voc/Common#publishedIn> <http://localhost:8080/landmark-publication-tool/nanopub/6#publication_6> .
+	
+	<http://ops.conceptwiki.org/concept/index/af73e357-f366-4360-ada4-883f3e4dc5cc> rdfs:label "scavidin" .
+	
+	<http://localhost:8080/landmark-publication-tool/nanopub/6#landmark_6> <http://www.nanopub.org/todoobject> <http://ops.conceptwiki.org/concept/index/af73e357-f366-4360-ada4-883f3e4dc5cc> ;
+		<http://www.nanopub.org/todosubject> <http://ops.conceptwiki.org/concept/index/ed77a902-1668-4556-88fc-febdd17400d5> ;
+		<http://www.w3.org/2004/02/skos/core#notation> "6"^^xsd:nonNegativeInteger .
+}
+
+<http://localhost:8080/landmark-publication-tool/nanopub/6#provenance> {
+	<http://localhost:8080/landmark-publication-tool/nanopub/6#publication_6> pav:authoredBy "Rajaram" ;
+		pav:publishedOn "2014-02-02"^^xsd:date .
+	
+	<http://localhost:8080/landmark-publication-tool/nanopub/6#assertion> <http://www.nanopub.org/tododiscoveryType> "null" ;
+		<http://www.nanopub.org/todoexperimentType> "Microarray" ;
+		pav:authoredBy "Rajaram" .
+}
+
+<http://localhost:8080/landmark-publication-tool/nanopub/6#publicationInfo> {
+	this: pav:createdBy "20335" ;
+		<http://www.nanopub.org/todoinstitution> "LUMC" ;
+		<http://purl.org/net/opmv/ns#wasGeneratedBy> <http://localhost:8080/landmark-publication-tool> ;
+		rdfs:comment "" ;
+		dc:created "2014-02-21T15:02:56.806+01:00"^^xsd:dateTime .
+}
+

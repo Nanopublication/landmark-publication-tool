@@ -1,0 +1,56 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX dcterms: <http://purl.org/dc/terms/> 
+PREFIX opm: <http://purl.org/net/opmv/ns#> 
+PREFIX pav: <http://swan.mindinformatics.org/ontologies/1.2/pav/> 
+PREFIX sio: <http://semanticscience.org/resource/> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX bibo: <http://purl.org/ontology/bibo/> 
+PREFIX tdwg: <http://rs.tdwg.org/ontology/voc/Common#> 
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
+
+PREFIX np: <http://www.nanopub.org/nschema#> 
+PREFIX todo: <http://www.nanopub.org/todo> 
+PREFIX cw: <http://ops.conceptwiki.org/concept/index/> 
+
+SELECT DISTINCT ?id ?publication ?subjectUri ?objectUri ?subjectLabel
+?objectLabel ?pubMedID ?author ?experimentType ?discoveryType
+?date ?claimDate ?curatorId ?details ?inst
+WHERE {
+  ?np a np:Nanopublication;
+  np:hasAssertion ?assert ;
+  np:hasProvenance ?prov;
+  np:hasPublicationInfo ?pInfo .
+  
+  GRAPH ?assert {
+    ?assoc a sio:association;
+      skos:notation ?id;
+      tdwg:publishedIn ?publication;
+      todo:subject ?subjectUri;
+      todo:object ?objectUri .
+    
+    ?subjectUri rdfs:label ?subjectLabel .
+    ?objectUri rdfs:label ?objectLabel .
+    
+    ?publication bibo:pmid ?pubMedID .
+  } .
+  
+  GRAPH ?prov {
+    ?assert
+      pav:authoredBy ?author;
+      todo:experimentType ?experimentType;
+      todo:discoveryType ?discoveryType .
+    
+    ?publication
+      pav:published_on ?date .
+  } .
+  
+  GRAPH ?pInfo {
+    ?np
+      dcterms:created ?claimDate;
+      pav:createdBy ?curatorId;
+      rdfs:comment ?details;
+      todo:institution ?inst .
+  }
+}
+ORDER BY ASC (?id)

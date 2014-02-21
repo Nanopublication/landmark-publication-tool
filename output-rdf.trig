@@ -1,0 +1,52 @@
+@prefix this: <http://localhost:8080/landmark-publication-tool/nanopub/1> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdfg: <http://www.w3.org/2004/03/trix/rdfg-1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix pav: <http://swan.mindinformatics.org/ontologies/1.2/pav/> .
+@prefix np: <http://www.nanopub.org/nschema#> .
+
+this: {
+	this: np:hasPublicationInfo <http://localhost:8080/landmark-publication-tool/nanopub/1#publicationInfo> ;
+		np:hasAssertion <http://localhost:8080/landmark-publication-tool/nanopub/1#assertion> ;
+		np:hasProvenance <http://localhost:8080/landmark-publication-tool/nanopub/1#provenance> ;
+		a np:Nanopublication .
+}
+
+<http://localhost:8080/landmark-publication-tool/nanopub/1#assertion> {
+	<http://localhost:8080/landmark-publication-tool/nanopub/1#landmark_1> <http://www.nanopub.org/todosubject> <http://ops.conceptwiki.org/concept/index/d2358aee-db99-47bf-939c-61ceecfede31> ;
+		a <http://semanticscience.org/resource/association> .
+	
+	<http://ops.conceptwiki.org/concept/index/d2358aee-db99-47bf-939c-61ceecfede31> rdfs:label "beta-Endorphin" .
+	
+	<http://ops.conceptwiki.org/concept/index/e78ae519-4b42-4dd2-985e-a52bdf831190> rdfs:label "beta-Endorphin Receptor" .
+	
+	<http://localhost:8080/landmark-publication-tool/nanopub/1#publication_1> a <http://semanticscience.org/resource/article> .
+	
+	<http://localhost:8080/landmark-publication-tool/nanopub/1#landmark_1> <http://www.nanopub.org/todoobject> <http://ops.conceptwiki.org/concept/index/e78ae519-4b42-4dd2-985e-a52bdf831190> ;
+		<http://www.w3.org/2004/02/skos/core#notation> "1"^^xsd:nonNegativeInteger ;
+		<http://rs.tdwg.org/ontology/voc/Common#publishedIn> <http://localhost:8080/landmark-publication-tool/nanopub/1#publication_1> .
+	
+	<http://localhost:8080/landmark-publication-tool/nanopub/1#publication_1> <http://purl.org/ontology/bibo/pmid> "BlaBla" .
+}
+
+<http://localhost:8080/landmark-publication-tool/nanopub/1#provenance> {
+	<http://localhost:8080/landmark-publication-tool/nanopub/1#publication_1> pav:authoredBy "Eelke" .
+	
+	<http://localhost:8080/landmark-publication-tool/nanopub/1#assertion> <http://www.nanopub.org/todoexperimentType> "Binding Study" ;
+		<http://www.nanopub.org/tododiscoveryType> "Analytical" .
+	
+	<http://localhost:8080/landmark-publication-tool/nanopub/1#publication_1> pav:publishedOn "2013-06-07"^^xsd:date .
+	
+	<http://localhost:8080/landmark-publication-tool/nanopub/1#assertion> pav:authoredBy "Eelke" .
+}
+
+<http://localhost:8080/landmark-publication-tool/nanopub/1#publicationInfo> {
+	this: <http://www.nanopub.org/todoinstitution> "LUMC" ;
+		<http://purl.org/net/opmv/ns#wasGeneratedBy> <http://localhost:8080/landmark-publication-tool> ;
+		pav:createdBy "Mark" ;
+		rdfs:comment "See below" ;
+		dc:created "2014-02-21T15:02:21.636+01:00"^^xsd:dateTime .
+}

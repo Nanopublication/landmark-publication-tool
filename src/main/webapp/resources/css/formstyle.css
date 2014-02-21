@@ -1,0 +1,126 @@
+body {
+	display: block;
+	margin: 0px;
+}
+
+a { font-weight: bold; }
+
+h3 {
+    font-family: sans-serif;
+    background-color: #E6E6E6;
+}
+
+.remove {
+    height: 25px;
+    vertical-align: top;
+}
+
+label.error {
+    font-size: small;
+    color: red;
+}
+
+.immutable {
+    background-color: lightgray;
+}
+
+img.info {
+    width: 13px;
+    vertical-align: top;
+}
+
+.content {
+    z-index: 100;
+    position: absolute;
+}
+
+.bgControl {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.bgControl > img {
+    height: 20px;
+}
+
+.errorblock {
+    background: #ff9999;
+    border: #ff3333;
+    padding: 3%;
+}
+
+#explanation {
+    top: 10%;
+    left: 0;
+    background-color: lightyellow;
+    position: absolute;
+    width: 28%;
+}
+
+#navigationList {
+    top: 30%;
+    left: 0;
+    position: absolute;
+    width: 7%;
+    text-align:center;
+    background-color: lightgray;
+    
+}
+  
+#navigationNew {
+    top: 10%;
+    left: 0;
+    position: absolute;
+    width: 7%;
+    text-align:center;
+    background-color: lightgray;
+    
+}
+
+#accordion {
+    position: absolute;
+    /*    visibility: visible;*/
+    left: 30%;
+    top: 15%;
+    width: 40%;
+    /*    z-index: 50;*/
+}
+
+#accordionList {
+    position: absolute;
+    /*    visibility: visible;*/
+    left: 10%;
+    top: 15%;
+    width: 80%;
+    height: 600px;
+    /* z-index: 50; */
+}
+
+#content  {
+    display: block;
+    width: 35%;
+    height: 25%;
+}
+
+#detailsArea {
+    width: 90%;
+    font-size: 70%;
+}
+
+#provenance > table > tr > td:first-child {
+    width: 40%;
+}
+/*.fullBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}*/
+
+/*#maincontent {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}*/
