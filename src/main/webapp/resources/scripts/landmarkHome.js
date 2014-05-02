@@ -1,5 +1,4 @@
 
-
     /*
      * Styling
      */
@@ -223,7 +222,7 @@ function cwAutoComplete(conceptType) { // conceptType = { '#subject' | '#object'
             console.log(tag);
 
             $.ajax({
-                url: "http://ops.conceptwiki.org/web-ws/concept/search/byTag",
+                url: "http://www.conceptwiki.org/web-ws/concept/search/byTag",
                 dataType: "jsonp",
                 data: {
                     q: request.term,
@@ -291,7 +290,7 @@ function cwAutoComplete(conceptType) { // conceptType = { '#subject' | '#object'
         html: true,
         minLength: 3,
         close: function() {
-            var url = 'http://ops.conceptwiki.org/concept/index/';
+            var url = 'http://www.conceptwiki.org/concept/index/';
             var parts = $(conceptType + ' > .validateConcept').val().split(" uuid=");
             $(conceptType + ' > .cwinfo').attr('href', url + parts[1]);
             $(conceptType + ' > .validateConcept').val(parts[0]);
