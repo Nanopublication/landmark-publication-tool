@@ -230,79 +230,59 @@ function cwAutoComplete(conceptType) { // conceptType = { '#subject' | '#object'
                 },
                 success: function(data) {
                     response($.map(data, function(item) {
-                        console.log(item);
-//                        
-//                        if(request.match == "No highlight information available") {
-//                        	return {
-//                                label: request.term,
-//                                value: request.term + " uuid=" + item.uuid
-//                            };
-//                        }
-                        
-                        var label = item.match;
-                        //var label = item.labels[0].text;
+                        var label = request.term;
+                        var prefLabel = "";
                         var value = label;
+                        var re = new RegExp(request.term, "i");
                         
-                        for( var i=0; i<item.labels.length; i++) {
-                        	var re = new RegExp(request.term, "i");
-                        	var Label = item.labels[i].text;
-                        	console.log("trying to match: " + Label);
-                        	if(Label.match(re)) {
-                        		console.log("match: " + Label);
-                        		return {
-                        			label: Label,
-                        		    value: Label + " uuid=" + item.uuid
-                        		};
+                        console.log("=======================================");
+                        for(var i=0; i<item.labels.length; i++) {
+                        	l = item.labels[i];
+                        	console.log("trying to match: " + l.text);
+                        	console.log(item.labels[i]);
+                        	
+                        	if(l.type == "PREFERRED")
+                        		prefLabel = l.text;
+                        	
+                        	if(l.text.match(re)) {
+                        		label = l.text;
+                        		if(l.type == "PREFERRED") break; 
                         	};
                         };
-
-                        console.log("Could not find a label that matched request term " + request.term);
-                        return {
-                        	label: request.term,
-                        	value: item.labels[0].text + " uuid=" + item.uuid
-                        };
                         
+                        if(label != prefLabel)
+                        	label = label + " - " + prefLabel;
                         
-//                        // TODO: make <em> substitution global (if multiple matches)
-//                        if(label == "No highlight information available") {
-//                        	label = value = request.term;
-//                        } else {
-//                            //label = label.replace(/<em>(.*?)<\/em>/g, ""); // search results seem to repeat <em> highlighted parts, so removing them
-//                            label = label.replace("<em>", "");
-//                        	label = label.replace("</em>", "");
-//                        }
-//                        value = value + " uuid=" + item.uuid;
-//                        //value = value.replace(/<em>(.*?)<\/em>/g, "");
-//                        value = value.replace("<em>", "");
-//                        value = value.replace("</em>", "");
-//
-//                        return {
-//                            label: label,
-//                            value: value
-//                        };
+                    	return {
+                			label: label,
+                		    value: label + " uuid=" + item.uuid
+                		}
                     }));
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    alert(errorThrown);
+                	if(jqXHR.status == 404)
+                		return [];
                 }
             });
         },
         html: true,
         minLength: 3,
         close: function() {
+        	var input = $(conceptType + ' > .validateConcept').val();
+        	if(input.indexOf("uuid=") < 0 )
+        		return;
+        	
             var url = 'http://www.conceptwiki.org/concept/index/';
-            var parts = $(conceptType + ' > .validateConcept').val().split(" uuid=");
-            $(conceptType + ' > .cwinfo').attr('href', url + parts[1]);
+            var parts = input.split(" uuid=");
+            $(conceptType + ' > .cwinfo').attr('href', url + parts[1]); // link to ConceptWiki
             $(conceptType + ' > .validateConcept').val(parts[0]);
-
-            $(conceptType + " > .hidden").val(parts[1]); // set hidden uuid field
+            $(conceptType + " > .hidden").val(parts[1]); // (hidden) uuid field
 
             conceptImmutable(conceptType);
-            //TODO: (now undefined) validator below caused concept input to unfocus?
-            //validator.element($(conceptType + ' > .validateConcept')); // in case this selection is a redo: verify selection now
         }
     });
     }; 
+
 
     // show ConceptWiki in a pop-up fancybox (cross-site error given, but page is shown!)
     $('.cwinfo').fancybox({'width': '80%',
