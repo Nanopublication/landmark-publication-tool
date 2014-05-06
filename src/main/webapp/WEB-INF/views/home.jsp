@@ -38,9 +38,9 @@
         <img src="${resources}/bgs/061005trdp042.jpg" alt="background" id="background" />
 
         <div class="bgControl">
-            <img id="bgBack" src="${resources}/icons/Actions-media-seek-backward-icon.png">
+            <%-- <img id="bgBack" src="${resources}/icons/Actions-media-seek-backward-icon.png"> --%>
             <img id="bgShow" src="${resources}/icons/Actions-edit-find-icon.png">
-            <img id="bgForward" src="${resources}/icons/Actions-media-seek-forward-icon.png">
+            <%-- <img id="bgForward" src="${resources}/icons/Actions-media-seek-forward-icon.png"> --%>
         </div>
         <div id="navigationList" class="content ui-corner-right ui-widget">
             Go to the list off all landmark claims
@@ -135,21 +135,23 @@
                             <tr>
                                 <td colspan="2">
                                 	Did the experiment use a high-throughput method?
+                                	<img id="expInfo" class="info tooltip" src="${resources}/icons/info.png" title="High-throughput methods include MicroArray, NGS, Robotic Screen, etc.">
+                                	<br>
                                 	<form:radiobutton path="experimentType" value="true" id="htTrue"/>
-                                	<label for="htTrue">Yes</label>
+                                	<label for="htTrue">Yes</label><br>
                                 	<form:radiobutton path="experimentType" value="false" id="htFalse"/>
                                 	<label for="htFalse">No</label>
-                                	<img id="expInfo" class="info tooltip" src="${resources}/icons/info.png" title="High-throughput methods include MicroArray, NGS, Robotic Screen, etc.">
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                	Was the discovery:<br>
+                                	Was the discovery:
+                                	<img id="expInfo" class="info tooltip" src="${resources}/icons/info.png" title="Which description fits your discovery the best? Feel free to elaborate by entering <strong>details</strong> below.">
+                                	<br>
                                 	<form:radiobutton path="discoveryType" value="expected" id="expected"/>
                                 	<label for="expected">expected or predicted</label><br>
                                 	<form:radiobutton path="discoveryType" value="serendipitous" id="serendipitous"/>
                                 	<label for="serendipitous">unexpected or serendipitous</label>
-                                	<img id="expInfo" class="info tooltip" src="${resources}/icons/info.png" title="Which description fits your discovery the best? Feel free to elaborate by entering <strong>details</strong> below.">
                                 	<!--<form:radiobutton path="discoveryType" value="unknown" id="unknown"/>
                                 	<label for="unknown">I don't know</label>-->
                                 </td>

@@ -45,6 +45,10 @@
         <!--  Submit a new <a href=".">landmark claim</a> -->
         Submit a new landmark claim
         </div>
+        <div id="navigationScore" class="content ui-corner-right ui-widget">
+        <!-- Go to the <a href="../nanopubList">list</a> of all landmark claims  -->
+        Go to the score-board
+        </div>
         
         <div id="accordionList" style="height:700px; display:block;">
             <h3 class="acc-header"><a href="#">Landmark nanopublication list</a></h3>
@@ -86,9 +90,12 @@
         <script type="text/javascript" src="${resources}/scripts/landmarkHome.js"></script>
         <script type="text/javascript">
  
-            $('#navigationNew').on('click', function(){
-                window.location = ".";    
-            });
+        $('#navigationNew').on('click', function(){
+            window.location = ".";    
+        });
+        $('#navigationScore').on('click', function(){
+            window.location = "curatorStats";    
+        });
 /*             $('#accordion').accordion({
                 heightStyle: "fill"
             }).refresh();

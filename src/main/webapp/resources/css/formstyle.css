@@ -68,6 +68,16 @@ img.info {
     
 }
   
+#navigationScore {
+    top: 30%;
+    left: 0;
+    position: absolute;
+    width: 7%;
+    text-align:center;
+    background-color: lightgray;
+    
+}
+
 #navigationNew {
     top: 10%;
     left: 0;

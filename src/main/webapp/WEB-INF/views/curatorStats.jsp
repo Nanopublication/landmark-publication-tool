@@ -131,9 +131,12 @@
         <script type="text/javascript" src="${resources}/scripts/landmarkHome.js"></script>
         <script type="text/javascript">
  
-            $('#navigationNew').on('click', function(){
-                window.location = ".";    
-            });
+        $('#navigationNew').on('click', function(){
+            window.location = ".";    
+        });
+        $('#navigationList').on('click', function(){
+            window.location = "nanopubList";    
+        });
 /*             $('#accordion').accordion({
                 heightStyle: "fill"
             }).refresh();
