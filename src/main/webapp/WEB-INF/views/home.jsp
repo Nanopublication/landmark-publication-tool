@@ -71,7 +71,7 @@
                         <!--<input type="text" name="autosub" id="completeSubject" class="validateConcept">-->
                         <form:input path="subjectLabel" name="autosub" id="completeSubject" class="validateConcept"/>
                         <img id="subRemove" class="remove" src="${resources}/icons/undo.png">
-                        <a id="completeSubjectInfo" class="cwinfo">Show concept</a>
+                        <a id="completeSubjectInfo" class="cwinfo">Details</a>
                         <form:input path="subjectUri" type="hidden" name="sub" class="hidden" id="completeSubjectUUID"/>
                         <br>
                     </div>
@@ -80,28 +80,30 @@
                         <img id="objInfo" class="info tooltip" src="${resources}/icons/info.png" title="Fill in the disease name. With autocomplete the disease name will be resolved to a unique UUID in the concept wiki.">
                         <form:input path="objectLabel" name="autoobj" id="completeObject" class="validateConcept"/>
                         <img id="objRemove" class="remove" src="${resources}/icons/undo.png">
-                        <a id="completeObjectInfo" class="cwinfo">Show concept</a>
+                        <a id="completeObjectInfo" class="cwinfo">Details</a>
                         <form:input path="objectUri" type="hidden" name="obj" class="hidden" id="completeObjectUUID"/>
                     </div>
-                    <div id="provenance">
+                    <!-- <div id="provenance">  -->
                         <table>
                             <tr>
-                                <td><span id="testclick">PubMedID</span><img id="doiInfo" class="info tooltip" src="${resources}/icons/info.png" title="Fill in the PubMed identifier of the LandMark publication, e.g. 21280221">&nbsp;</td>
+                                <td><span id="testclick">PubMedID</span><img id="doiInfo" class="info tooltip" src="${resources}/icons/info.png" title="PubMed identifier of the LandMark publication, e.g. 21280221. If there is no PubMedID, then give DOI or a URL to identify the paper.">&nbsp;</td>
                                 <td><form:input path="pubmedId" name="doi"/></td>
                             </tr>
                             <tr>
-                                <td><span>Publication Date</span><img id="pdateInfo" class="info tooltip" src="${resources}/icons/info.png" title="">&nbsp;</td>
+                                <td><span>Publication Date</span><img id="pdateInfo" class="info tooltip" src="${resources}/icons/info.png" title="First date of publication">&nbsp;</td>
                                 <td><form:input path="publicationDate" type="text" name="pdate" id="datepicker"/></td>
                             </tr>
-                            <tr><td><span>Author</span><img id="ridInfo" class="info tooltip" src="${resources}/icons/info.png" title="Fill in the first author of the paper. This may also be an email address. Please do with name and surname if possible.">&nbsp;</td>
+                            <tr><td><span>Author ID</span><img id="ridInfo" class="info tooltip" src="${resources}/icons/info.png" title="First author of the paper by ResearcherID, ORCID or, alternatively, an email address. Please use full-name only as last resort.">&nbsp;</td>
                                 <td><form:input path="author" type="text" name="rid" class="rid"/></td>
+                            </tr>
+                                                       <tr><td><span>Institution</span><img id="instInfo" class="info tooltip" src="${resources}/icons/info.png" title="Which institution is mainly to be credited for this discovery?">&nbsp;</td>
+                                <td><form:input path="institution" type="text" id="inst" name="inst" class="inst"/></td>
                             </tr>
                             <tr><td><span>Curator ID</span><img id="cidInfo" class="info tooltip" src="${resources}/icons/info.png" title="Are you making the claim on someone else's behalve? Then you deserve credits as a curator! Please fill in your name and/or email address.">&nbsp;</td>
                                 <td><form:input path="curatorId" type="text" name="cid" class="cid"/></td>
                             </tr>
-                            <tr><td><span>Institution</span><img id="instInfo" class="info tooltip" src="${resources}/icons/info.png" title="Which institution is mainly to be credited for this discovery?">&nbsp;</td>
-                                <td><form:input path="institution" type="text" id="inst" name="inst" class="inst"/></td>
-                            </tr>
+ 
+                            <!--
                             <tr><td><span>Experiment type</span><img id="expInfo" class="info tooltip" src="${resources}/icons/info.png" title="Choose an experiment type that is described in the landmark publication that obtained the landmark result.">&nbsp;</td>
                                 <td>
                                     <form:select path="experimentType" name="component-select">
@@ -120,6 +122,7 @@
                                 </form:select>
                             </td>
                             </tr>
+                            -->
                             <!--<tr><td><span>Motivation</span><img id="instInfo" class="info" src="${resources}/icons/info.png">&nbsp;</td>
                                 <td>
                                     <SELECT name="component-select">
@@ -129,18 +132,32 @@
                                     </SELECT>
                                 </td>
                             </tr>-->
-                            <tr style="font-size: 95%"><!--
-                                <td align="justify" colspan="2">
-                                    Would you describe the discovery more as an
-                                    <span id="accidentalEnv" style="white-space:nowrap; background-color: lightgrey;">
-                                        <input type="radio" name="motiv" id="accidentType">
-                                        <label for="accidentType">accidental</label>
-                                    </span> finding, or as the result of
-                                    <span id="analyticalEnv" style="white-space:nowrap; background-color: lightgrey;">
-                                        <input type="radio" name="motiv" id="analyticalType">
-                                        <label for="analyticalType">analytical</label>
-                                    </span> derivation based on previous knowledge from literature?
-                                </td>-->
+                            <tr>
+                                <td colspan="2">
+                                	Did the experiment use a high-throughput method?
+                                	<form:radiobutton path="experimentType" value="true" id="htTrue"/>
+                                	<label for="htTrue">Yes</label>
+                                	<form:radiobutton path="experimentType" value="false" id="htFalse"/>
+                                	<label for="htFalse">No</label>
+                                	<img id="expInfo" class="info tooltip" src="${resources}/icons/info.png" title="High-throughput methods include MicroArray, NGS, Robotic Screen, etc.">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                	Was the discovery:<br>
+                                	<form:radiobutton path="discoveryType" value="expected" id="expected"/>
+                                	<label for="expected">expected or predicted</label><br>
+                                	<form:radiobutton path="discoveryType" value="serendipitous" id="serendipitous"/>
+                                	<label for="serendipitous">unexpected or serendipitous</label>
+                                	<img id="expInfo" class="info tooltip" src="${resources}/icons/info.png" title="Which description fits your discovery the best? Feel free to elaborate by entering <strong>details</strong> below.">
+                                	<!--<form:radiobutton path="discoveryType" value="unknown" id="unknown"/>
+                                	<label for="unknown">I don't know</label>-->
+                                </td>
+                            </tr>
+                           
+                            <!--<tr style="font-size: 95%">
+                               
+              
                                 <td align="justify" colspan="2">
                                     Would you describe the discovery more as an
                                     <span id="accidentalEnv" style="white-space:nowrap; background-color: lightgrey;">
@@ -155,9 +172,10 @@
                                         <form:radiobutton path="discoveryType" name="motiv" value="unknown" id="unknownType"/>
                                         <label for="unknownType">unknown</label>?&nbsp;<img id="expInfo" class="info tooltip" src="${resources}/icons/info.png" title="Which description fits your discovery the best? Feel free to elaborate by entering <strong>details</strong> below.">
                                     </span>
-                                    <!--<img id="typeInfo" class="info" src="${resources}/icons/info.png">-->
                                 </td>
                             </tr>
+                            -->
+                            
                             <tr id="detailsQuestion">
                                 <td colspan="2">
                                     Would you like to provide additional <a id="detailsAction">details?</a>
@@ -178,7 +196,7 @@
                                 <td width="50%">result</td>
                             </tr>
                         </table>-->
-                    </div>
+                    <!-- </div> -->
                     <br>
                     <div>
                         <input type="submit" value="Publish your landmark discovery">
@@ -230,6 +248,17 @@
             }
             ;
 
+            console.log("executing on home.jsp!");
+            console.log($( "#completeSubject" ));
+            $( "#completeSubject" ).position({
+            	  my: "left",
+            	  using: function(props, info) {
+            		 console.log(props);
+            		 console.log(info);
+            	     $(this).css("left", props.left);
+            	  }
+            	});
+            
             $('#explanation').css('width', '0px');
             $('#explContent').hide();
 

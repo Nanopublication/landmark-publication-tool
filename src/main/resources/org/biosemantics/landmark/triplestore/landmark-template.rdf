@@ -12,7 +12,7 @@
 @prefix np: <http://www.nanopub.org/nschema#> .
 @prefix : <http://localhost:8080/landmark-publication-tool/nanopub/LANDMARKID#> .
 @prefix lmo: <http://www.nanopub.org/lmo#> .
-@prefix cw: <http://ops.conceptwiki.org/concept/index/> .
+@prefix cw: <http://www.conceptwiki.org/concept/index/> .
 
 @base <http://localhost:8080/landmark-publication-tool/nanopub/LANDMARKID> .
        

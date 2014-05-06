@@ -96,7 +96,7 @@
                 </tr>
                 
                 <tr>
-                    <td>Experiment type</td>
+                    <td>High-throughput</td>
                     <td>${publication.experimentType}</td>
                 </tr>
  
@@ -108,7 +108,7 @@
                 </tr>  
                 
                 <tr>
-                    <td>Nanopublication File</td>
+                    <td>Nanopublication</td>
                     <td>
                         <a href="/landmark-publication-tool/rdf/${publication.id}" target="blank">
                            

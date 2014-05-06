@@ -24,6 +24,7 @@ import org.openrdf.repository.Repository;
 import org.openrdf.repository.RepositoryConnection;
 import org.openrdf.repository.RepositoryException;
 import org.openrdf.repository.sail.SailRepository;
+import org.openrdf.repository.sparql.SPARQLRepository;
 import org.openrdf.rio.RDFFormat;
 import org.openrdf.sail.Sail;
 import org.openrdf.sail.memory.MemoryStore;
@@ -79,7 +80,8 @@ public class StoreManagerImpl implements StoreManager {
         File storeLoc = new File(location);
         Sail store = new NativeStore(storeLoc);
 
-        this.repository = new SailRepository(store);
+        //this.repository = new SailRepository(store);
+        this.repository = new SPARQLRepository("http://agraph.biosemantics.org/repositories/landmarks");
         this.repository.initialize();
     }
 
