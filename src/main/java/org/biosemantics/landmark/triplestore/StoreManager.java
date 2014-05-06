@@ -1,6 +1,7 @@
 package org.biosemantics.landmark.triplestore;
 
 import java.util.Set;
+import org.biosemantics.landmark.model.CuratorStats;
 
 import org.biosemantics.landmark.model.LandmarkPublication;
 
@@ -56,5 +57,6 @@ public interface StoreManager {
 	public abstract String getBaseUri(); 
         
         public LandmarkPublication retrieveLandmarkPublicationTrig (final String ID) throws LandmarkException;
+        public Set<CuratorStats> listCurators() throws LandmarkException;
 
 }

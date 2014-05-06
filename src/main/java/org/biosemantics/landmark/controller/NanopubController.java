@@ -35,6 +35,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import org.apache.commons.io.IOUtils;
+import org.biosemantics.landmark.model.CuratorStats;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
@@ -106,7 +107,23 @@ public class NanopubController {
             // TODO pass on error message to the user
         }
         return mav;
-    }   
+    }
+    
+    @RequestMapping(value = "/curatorStats")
+    public ModelAndView showcuratorStatView(HttpServletResponse response)
+            throws IOException {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("curatorStats");
+        try {
+            Set<CuratorStats> curatorStatsSet = landmarkStore.listCurators();
+            mav.addObject("curatorStatsSet", curatorStatsSet);
+        }
+        catch (LandmarkException ex) {
+            LOG.error(ex.getMessage(), ex);
+            // TODO pass on error message to the user
+        }
+        return mav;
+    }
     
     @RequestMapping(value = "/rdf/{id}", method = RequestMethod.GET)
 

@@ -40,7 +40,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.LinkedHashSet;
 import java.util.logging.Level;
+import org.biosemantics.landmark.model.CuratorStats;
 import org.nanopub.MalformedNanopubException;
 import org.nanopub.Nanopub;
 import org.nanopub.NanopubImpl;
@@ -272,6 +274,19 @@ public class StoreManagerImpl implements StoreManager {
 
         return pub;
     }
+    
+    private static CuratorStats bindingSetToCuratorStats(BindingSet row) throws ParseException {
+        CuratorStats stats = new CuratorStats();
+        
+        if (row.hasBinding("curatorId")) {
+            stats.setName(row.getBinding("curatorId").getValue().stringValue());
+        }
+
+        if (row.hasBinding("noOfClaims")) {
+            stats.setNoOfClaims(Integer.parseInt(row.getBinding("noOfClaims").getValue().stringValue()));
+        }
+        return stats;
+    }
 
     @Override
     public LandmarkPublication retrieveLandmarkPublication(final String id)
@@ -392,6 +407,52 @@ public class StoreManagerImpl implements StoreManager {
         }
         catch (Exception e) {
             LOG.error("Error retrieving landmark publication list!");
+            throw (new LandmarkException(e));
+        }
+        finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                }
+                catch (Exception e) {
+                    LOG.error("Error closing repository connection!");
+                    throw (new LandmarkException(e));
+                }
+            }
+        }
+
+        return resultSet;
+    }
+    
+    
+    @Override
+    public Set<CuratorStats> listCurators()
+            throws LandmarkException {
+        // return Collections.singleton(this.singletonLMP);
+        Set<CuratorStats> resultSet = new LinkedHashSet<CuratorStats>();
+
+        RepositoryConnection conn = null;
+        try {
+            conn = getRepositoryConnection();
+            String curatorsQuery = Resources.toString(getClass().
+                    getResource("curator-stats.sparql"), Charsets.UTF_8);
+
+            // Get the list of LMPs:
+            TupleQuery query = conn.prepareTupleQuery(QueryLanguage.SPARQL,
+                    curatorsQuery, baseUri);
+            TupleQueryResult queryResults = query.evaluate();
+
+            while (queryResults.hasNext()) {
+                BindingSet row = queryResults.next();
+
+                CuratorStats stats = bindingSetToCuratorStats(row);
+
+                resultSet.add(stats);
+            }
+
+        }
+        catch (Exception e) {
+            LOG.error("Error retrieving curators list!");
             throw (new LandmarkException(e));
         }
         finally {

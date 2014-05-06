@@ -1,0 +1,28 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX dcterms: <http://purl.org/dc/terms/> 
+PREFIX opm: <http://purl.org/net/opmv/ns#> 
+PREFIX pav: <http://swan.mindinformatics.org/ontologies/1.2/pav/> 
+PREFIX sio: <http://semanticscience.org/resource/> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX bibo: <http://purl.org/ontology/bibo/> 
+PREFIX tdwg: <http://rs.tdwg.org/ontology/voc/Common#> 
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
+
+PREFIX np: <http://www.nanopub.org/nschema#> 
+PREFIX lmo: <http://www.nanopub.org/lmo#> 
+PREFIX cw: <http://ops.conceptwiki.org/concept/index/> 
+
+SELECT DISTINCT ?curatorId (COUNT(?pInfo) AS ?noOfClaims)
+WHERE {
+  ?np a np:Nanopublication;
+  np:hasPublicationInfo ?pInfo .
+  
+  
+  GRAPH ?pInfo {
+    ?np
+      pav:createdBy ?curatorId;
+      lmo:institution ?inst .
+  }
+}
+GROUP BY ?curatorId ORDER BY DESC (?noOfClaims)
