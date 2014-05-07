@@ -65,7 +65,7 @@
                     <tr>                         
                         <th align="left">Curator</th>
                         <th align="left">Number of claims</th>
-                        <th align="left">Medal</th>
+                        <th align="left">Position</th>
                     </tr>
                 </thead>
 
