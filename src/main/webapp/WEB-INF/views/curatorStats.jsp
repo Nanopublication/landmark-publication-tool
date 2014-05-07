@@ -93,19 +93,19 @@
                                 
                                 <c:when test="${count == 1}">
                                     <td>
-                                        <img src="${resources}/lead/first.jpg" id="first" height="22" width="22"/>
+                                        <img src="${resources}/lead/first.png" id="first" height="30" width="30"/>
                                     </td>
                                 </c:when>
 
                                 <c:when test="${count == 2}">
                                     <td>
-                                        <img src="${resources}/lead/second.jpg" id="second" height="22" width="22"/>
+                                        <img src="${resources}/lead/second.png" id="second" height="30" width="30"/>
                                     </td>
                                 </c:when> 
 
                                 <c:when test="${count == 3}">
                                     <td>
-                                        <img src="${resources}/lead/third.jpg" id="third" height="22" width="22"/>
+                                        <img src="${resources}/lead/third.png" id="third" height="30" width="30"/>
                                     </td>
                                 </c:when> 
                                     
