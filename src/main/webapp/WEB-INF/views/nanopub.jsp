@@ -110,7 +110,7 @@
                 <tr>
                     <td>Nanopublication</td>
                     <td>
-                        <a href="/landmark-publication-tool/rdf/${publication.id}" target="blank">
+                        <a href="../rdf/${publication.id}" target="blank">
                            
                         Trig</a>
                     </td>
